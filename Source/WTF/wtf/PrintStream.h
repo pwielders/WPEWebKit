@@ -26,6 +26,7 @@
 #pragma once
 
 #include <memory>
+#include <optional>
 #include <stdarg.h>
 #include <tuple>
 #include <wtf/Forward.h>
