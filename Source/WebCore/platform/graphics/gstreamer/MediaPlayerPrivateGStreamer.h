@@ -35,6 +35,7 @@
 #include <glib.h>
 #include <gst/gst.h>
 #include <gst/pbutils/install-plugins.h>
+#include <optional>
 #include <wtf/Atomics.h>
 #include <wtf/Condition.h>
 #include <wtf/Forward.h>
