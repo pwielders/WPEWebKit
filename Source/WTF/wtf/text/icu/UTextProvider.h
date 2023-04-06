@@ -79,12 +79,20 @@ inline bool uTextAccessInChunkOrOutOfRange(UText* text, int64_t nativeIndex, int
             // Ensure chunk offset is well formed if computed offset exceeds int32_t range.
             ASSERT(offset < std::numeric_limits<int32_t>::max());
             text->chunkOffset = offset < std::numeric_limits<int32_t>::max() ? static_cast<int32_t>(offset) : 0;
+#ifdef TRUE
             isAccessible = TRUE;
+#else            
+            isAccessible = true;
+#endif
             return true;
         }
         if (nativeIndex >= nativeLength && text->chunkNativeLimit == nativeLength) {
             text->chunkOffset = text->chunkLength;
+#ifdef FALSE
             isAccessible = FALSE;
+#else            
+            isAccessible = false;
+#endif
             return true;
         }
     } else {
@@ -93,12 +101,20 @@ inline bool uTextAccessInChunkOrOutOfRange(UText* text, int64_t nativeIndex, int
             // Ensure chunk offset is well formed if computed offset exceeds int32_t range.
             ASSERT(offset < std::numeric_limits<int32_t>::max());
             text->chunkOffset = offset < std::numeric_limits<int32_t>::max() ? static_cast<int32_t>(offset) : 0;
+#ifdef TRUE
             isAccessible = TRUE;
+#else            
+            isAccessible = true;
+#endif
             return true;
         }
         if (nativeIndex <= 0 && !text->chunkNativeStart) {
             text->chunkOffset = 0;
+#ifdef FALSE
             isAccessible = FALSE;
+#else            
+            isAccessible = false;
+#endif
             return true;
         }
     }
