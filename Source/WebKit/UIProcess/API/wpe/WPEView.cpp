@@ -171,16 +171,6 @@ View::View(struct wpe_view_backend* backend, const API::PageConfiguration& baseC
             auto& page = view.page();
 
             WebKit::NativeWebTouchEvent touchEvent(event, page.deviceScaleFactor());
-
-            auto& scrollGestureController = *view.m_scrollGestureController;
-            if (scrollGestureController.isHandling()) {
-                const struct wpe_input_touch_event_raw* touchPoint = touchEvent.nativeFallbackTouchPoint();
-                if (touchPoint->type != wpe_input_touch_event_type_null && scrollGestureController.handleEvent(touchPoint)) {
-                    page.handleWheelEvent(WebKit::NativeWebWheelEvent(scrollGestureController.axisEvent(), page.deviceScaleFactor(), scrollGestureController.phase(), WebWheelEvent::Phase::PhaseNone));
-                    return;
-                }
-            }
-
             page.handleTouchEvent(touchEvent);
         },
 #endif
